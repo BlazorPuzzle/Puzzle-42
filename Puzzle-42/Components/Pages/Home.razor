@@ -1,28 +1,30 @@
 ﻿@page "/"
 
-<style>
-    .myDiv {
-        padding: 10px;
-        overflow-y: auto;
-        width: 400px;
-        height: 80vh;
-        background-color: antiquewhite;
-    }
-</style>
+<HeadContent>
+	<style>
+		.myDiv {
+			padding: 10px;
+			overflow-y: auto;
+			width: 400px;
+			height: 80vh;
+			background-color: antiquewhite;
+		}
+	</style>
+</HeadContent>
 
 <PageTitle>Home</PageTitle>
 
 <p>
-    This is a  .NET 8 Blazor Web App with global server interactivity.
+	This is a .NET 8 Blazor Web App with global server interactivity.
 </p>
 <p>
-    How can we make this div consitently span the full height of the page, even if the browser is resized?
+	How can we make this div consitently span the full height of the page, even if the browser is resized?
 </p>
 
 
 <div class="myDiv">
-    @for (int i = 0; i < 100; i++)
-    {
-        <p>Line @i</p>
-    }
+	@for (int i = 0; i < 100; i++)
+	{
+		<p>Line @i</p>
+	}
 </div>
