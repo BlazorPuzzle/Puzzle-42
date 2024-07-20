@@ -2,7 +2,7 @@
 
 ## Impossible CSS
 
-YouTube Video: https://youtu.be/
+YouTube Video: https://youtu.be/0_yTAminMfQ
 
 Blazor Puzzle Home Page: https://blazorpuzzle.com
 
