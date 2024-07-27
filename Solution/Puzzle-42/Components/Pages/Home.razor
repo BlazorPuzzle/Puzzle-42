@@ -1,0 +1,59 @@
+﻿@page "/"
+@inject  IJSRuntime jsRuntime
+
+<HeadContent>
+	<style>
+		.myDiv {
+			padding: 10px;
+			overflow-y: auto;
+			width: 400px;
+			background-color: antiquewhite;
+		}
+	</style>
+	<script>
+		window.InitBlazorPage = (dotnetHelper) => {
+            window.addEventListener('resize', () => {
+                dotnetHelper.invokeMethodAsync('OnResize', window.innerWidth, window.innerHeight);
+            });
+            window.dispatchEvent(new Event('resize'));
+        };
+
+	</script>
+</HeadContent>
+
+<PageTitle>Home</PageTitle>
+
+<p>
+	This is a .NET 8 Blazor Web App with global server interactivity.
+</p>
+<p>
+	How can we make this div consitently span the full height of the page, even if the browser is resized?
+</p>
+
+
+<div class="myDiv" style="height:@height">
+	@for (int i = 0; i < 100; i++)
+	{
+		<p>Line @i</p>
+	}
+</div>
+
+@code 
+{
+	string height = "";
+
+	[JSInvokable]
+	public async Task OnResize(int width, int height)
+	{
+		this.height = (height - 180).ToString() + "px";
+        await InvokeAsync(StateHasChanged);
+	}
+
+	protected override async Task OnAfterRenderAsync(bool firstRender)
+	{
+		if (firstRender)
+		{
+			await jsRuntime.InvokeVoidAsync("InitBlazorPage", DotNetObjectReference.Create(this));
+		}
+	}
+}
